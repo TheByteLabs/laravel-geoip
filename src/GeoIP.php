@@ -84,13 +84,14 @@ class GeoIP
     {
         $this->config = $config;
 
+        if ($this->config('cache', 'none') !== 'none'){
         // Create caching instance
         $this->cache = new Cache(
             $cache,
             $this->config('cache_tags'),
             $this->config('cache_expires', 30)
         );
-
+        }
         // Set custom default location
         $this->default_location = array_merge(
             $this->default_location,
